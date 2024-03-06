@@ -6,7 +6,7 @@ public class Enemy extends DynamicSprite{
     private boolean sees;
     private final double startingX;
     private final double startingY;
-    private long timeStamp=0;
+    private long timeStamp=System.currentTimeMillis();
 
     public Enemy(double x, double y, Image image) {
         super(x, y, image);
