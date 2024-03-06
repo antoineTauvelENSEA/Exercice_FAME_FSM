@@ -16,4 +16,7 @@ public enum HeroBehaviour {
     public int getNumberOfFrameInCurrentAttitude() {
         return numberOfFrameInCurrentAttitude;
     }
+    public boolean shouldRoll(){
+        return !(this==SLEEPING_EAST || this==SLEEPING_NORTH || this==SLEEPING_SOUTH || this==SLEEPING_WEST);
+    }
 }

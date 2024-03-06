@@ -7,6 +7,8 @@ public class Enemy extends DynamicSprite{
     private final double startingX;
     private final double startingY;
     private long timeStamp=System.currentTimeMillis();
+    private EnemyBehaviour enemyBehaviour = EnemyBehaviour.IDLE;
+
 
     public Enemy(double x, double y, Image image) {
         super(x, y, image);
@@ -37,7 +39,36 @@ public class Enemy extends DynamicSprite{
         g.drawImage(image,(int) x,(int) y,(int) x+40,(int) y+ 43,0,0,40,43,null);
         g.setColor(Color.BLUE);
         g.setFont(new Font("TimesRoman",Font.BOLD,24));
-        g.drawString(sees?"Gotcha !":"Where are you ?", 0,25);
+        g.drawString(enemyBehaviour.name(), 0,25);
+    }
+
+    public void updateFSM(){
+        if (sees){
+            enemyBehaviour = EnemyBehaviour.CHARGING;
+        }
+        else{
+            switch(enemyBehaviour){
+                case IDLE : enemyBehaviour= EnemyBehaviour.IDLE;
+                    break;
+                case CHARGING  :
+                    timeStamp = System.currentTimeMillis();
+                    enemyBehaviour=EnemyBehaviour.SUSPISCIOUS;
+                    break;
+                case SUSPISCIOUS:
+                    if (System.currentTimeMillis()-timeStamp>2000){
+                        enemyBehaviour = EnemyBehaviour.IDLE;
+                    }
+                    break;
+            }
+        }
+    }
+
+    public void updatePosition(Hero hero, ArrayList<Sprite> environment){
+        if (enemyBehaviour != EnemyBehaviour.SUSPISCIOUS){
+            double targetPositionX = enemyBehaviour==EnemyBehaviour.CHARGING?hero.x:startingX;
+            double targetPositionY = enemyBehaviour==EnemyBehaviour.CHARGING?hero.y:startingY;
+            moveIfPossible(((targetPositionX-x)>0)?5:-5,(targetPositionY-y)>0?5:-5,environment);
+        }
     }
 
 }

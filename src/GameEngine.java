@@ -18,7 +18,12 @@ public class GameEngine implements ActionListener{
             for (Sprite sprite : spriteArrayList){
                 if (sprite instanceof Enemy){
                     ((Enemy) sprite).sees(hero, spriteArrayList);
+                    ((Enemy) sprite).updateFSM();
+                    ((Enemy) sprite).updatePosition(hero,spriteArrayList);
                 }
             }
+            hero.updateFSM();
+            hero.updatePosition();
+
     }
 }
