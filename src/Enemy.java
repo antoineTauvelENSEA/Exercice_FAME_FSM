@@ -4,9 +4,14 @@ import java.util.ArrayList;
 
 public class Enemy extends DynamicSprite{
     private boolean sees;
+    private final double startingX;
+    private final double startingY;
 
     public Enemy(double x, double y, Image image) {
         super(x, y, image);
+        this.startingX=x;
+        this.startingY=y;
+
         this.hitBox.height=43;
         this.hitBox.width=40;
     }
