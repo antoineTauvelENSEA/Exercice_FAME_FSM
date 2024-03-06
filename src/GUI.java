@@ -57,23 +57,19 @@ public class GUI extends JFrame implements KeyListener {
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()){
             case KeyEvent.VK_UP:
-                hero.setAttitude(2);
-                hero.setWalking(true);
+                hero.setHeroBehaviour(HeroBehaviour.WALKING_NORTH);
                 hero.moveIfPossible(0,-10,gameRender.getListOfSprites());
                 break;
             case KeyEvent.VK_DOWN:
-                hero.setAttitude(0);
-                hero.setWalking(true);
+                hero.setHeroBehaviour(HeroBehaviour.WALKING_SOUTH);
                 hero.moveIfPossible(0,10,gameRender.getListOfSprites());
                 break;
             case KeyEvent.VK_LEFT:
-                hero.setAttitude(1);
-                hero.setWalking(true);
+                hero.setHeroBehaviour(HeroBehaviour.WALKING_WEST);
                 hero.moveIfPossible(-10,0,gameRender.getListOfSprites());
                 break;
             case KeyEvent.VK_RIGHT:
-                hero.setAttitude(3);
-                hero.setWalking(true);
+                hero.setHeroBehaviour(HeroBehaviour.WALKING_EAST);
                 hero.moveIfPossible(10,0,gameRender.getListOfSprites());
                 break;
         }
@@ -81,6 +77,6 @@ public class GUI extends JFrame implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-        hero.setWalking(false);
+      //  hero.setHeroBehaviour(HeroBehaviour.SLEEPY_SOUTH);
     }
 }
