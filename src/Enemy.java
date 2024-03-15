@@ -72,10 +72,10 @@ public class Enemy extends DynamicSprite{
             moveIfPossible(((targetPositionX-x)>0)?5:-5,(targetPositionY-y)>0?5:-5,environment);
         }
         Rectangle largeHitBox = (Rectangle) hitBox.clone();
-        largeHitBox.width= largeHitBox.width+10;
-        largeHitBox.height= largeHitBox.height+10;
-        largeHitBox.x= largeHitBox.x-5;
-        largeHitBox.y= largeHitBox.y-5;
+        largeHitBox.width= largeHitBox.width+6;
+        largeHitBox.height= largeHitBox.height+6;
+        largeHitBox.x= largeHitBox.x-3;
+        largeHitBox.y= largeHitBox.y-3;
         catchTheHero=hero.hitBox.intersects(largeHitBox);
     }
 
